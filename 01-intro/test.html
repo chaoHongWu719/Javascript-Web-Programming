@@ -1,0 +1,21 @@
+<!DOCTYPE html>  <!--html5-->
+
+<html>
+    <head>
+        <mata charset = "utf8">  <!--decoding-->
+        <title>Javascript 網頁程式設計 02/25</title>
+        <link rel = "shortcut icon" href = "favicon.ico">  <!--logo on title-->
+        <style>
+            h1{color: red; text-align: center;}
+        </style>  <!--CSS-->
+    </head>
+
+    <body>
+        <h1>首頁</h1>
+        <script>
+            document.getElementsByTagName("h1")[0].addEventListener(
+                "click", function(){this.style.color = "blue"}
+            )
+        </script>  <!--Javascript-->
+    </body>
+</html>
