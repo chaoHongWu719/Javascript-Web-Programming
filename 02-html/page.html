@@ -1,0 +1,104 @@
+<!DOCTYPE html>  <!--html5-->
+
+<html lang = "zh-TW">  <!--language-->
+    <head>
+        <meta charset = "utf8">  <!--decoding-->
+        <title>Javascript 網頁程式設計 03/04</title>
+        <link rel = "icon" type = "image/x-icon" href = "../01_intro/favicon.ico">  
+        <!--logo on title, .. means upper directory-->
+    </head>
+
+    <body>
+        <header id = "header">
+            <h1>&lt;h1&gt;是大標題的標籤</h1>
+            <ol type = "1">
+                <li>這是有序的清單</li>
+                <li>type 可以設定為1, A, a, I, i... (但現在多在 CSS 設定)</li>
+            </ol>
+
+            <ul type = "circle">
+                <li>這是無序的清單</li>
+                <li>type可以設定為disc, circle, square... (但現在多在 CSS 設定)</li>
+            </ul>
+
+            <dl>
+                <dt>&lt;dl&gt;</dt>
+                <dd>定義清單的開始 (沒有項目符號)</dd>
+                <dt>&lt;dt&gt;</dt>
+                <dd>定義清單項目的名稱 (沒有項目符號)</dd>
+                <dt>&lt;dd&gt;</dt>
+                <dd>定義清單項目的描述 (沒有項目符號)</dd>
+            </dl>
+        </header>
+
+        <nav>
+            <p>&lt;header&gt;是頁首的標籤，通常用來放置網站的標題、副標題等內容。</p>
+            <p>&lt;nav&gt;是導航的標籤，通常用來放置網站的主要導航連結。</p>
+            <p>&lt;a&gt;是超連結的標籤，href屬性用於指定網址，target可選_blank(在新分頁中開啟連結)、_self(在當前分頁中開啟連結)。</p>
+            <a href = "https://timetable.nycu.edu.tw/" target = "_blank">anchor:交大課程時間表網址</a>
+            <a href = "#footer">跳轉到底部</a>
+        </nav>
+
+        <main>
+            <p>&lt;p&gt;是段落文字的標籤，剛剛的標題標籤有h1到h6可供使用，可用CSS來設定標題字體大小、顏色等格式。</p>
+            <q>&lt;q&gt;是引用文字的標籤，會用雙引號標註起來，不會縮排。</q>
+            <blockquote>
+                &lt;blockquote&gt;是引用段落的標籤，整段會有縮排，可以寫一大段文字。底下示範一些特殊符號的寫法。<br>
+                請注意:html並不會理會在編輯器上的連續空格或換行，因此需要使用pre標籤將文字做預格式化處理，如跳行需使用&lt;br&gt;標籤，一行線條則需使用&lt;hr&gt;標籤。<br>
+                <hr>
+            </blockquote>
+
+            <pre>  <!--pre-formatted text-->
+                這是預格式化的文字，會保留空白和換行。以下是一個表格範例。
+                html code       符號　　說明　　
+                -----------------------------------------------------------
+                &amp;lt;              &lt;          小於
+                &amp;gt;             &gt;          大於
+                &amp;amp;          &amp;          和號
+                &amp;copy;         &copy;          版權符號
+                &amp;quot;          &quot;          雙引號
+            </pre>
+
+            <p>&lt;span&gt;與&lt;div&gt;標籤可以用來對文字的一部分進行格式化，通常是為了設定文字樣式，差異在於&lt;div&gt;是區塊 (block) 元素，用於包一整塊段落；而&lt;span&gt;是行內 (inline) 元素，用來包一小段文字。</p>
+            <span style = "color: red;">這段文字是紅色的</span>
+            <span style = "color: blue;">這段文字是藍色的</span>
+            <div style = "color: green;">這段文字是綠色的，因為使用的&lt;div&gt;標籤屬於block element, 所以會自動換行</div>
+        
+            <p>接下來來說明圖片的插入方式。&lt;img&gt; 標籤用於插入圖片，但這是 inline element/p>，通常會搭配 block element &lt;figure&gt;使用，這樣就可以在圖片下方加上說明文字&lt;figurecaption&gt;
+
+            <figure>
+            <img src = "dragon.png" width = "200" 
+                alt = "圖片無法顯示的替代文字，或為了無障礙網頁所需、給搜尋引擎讀取的文字" 
+                title = "滑鼠點過來，顯示這是一隻快龍">
+            <figurecaption>這是一隻快龍</figurecaption>
+            </figure>
+            
+                <a href = "https://tw.portal-pokemon.com/play/pokedex/0149" target = "_blank">
+                <img src = "dragon.png" width = "200" 
+                    alt = "圖片無法顯示的替代文字，或為了無障礙網頁所需、給搜尋引擎讀取的文字" 
+                    title = "滑鼠點過來，顯示這是一隻快龍，而且這張圖片本身也是一個超連結">
+            </a>
+            
+            <p>&lt;audio&gt;標籤用於插入音訊，通常會搭配&lt;source&gt;標籤使用，可以提供多種格式的音訊檔案，以確保在不同瀏覽器上的兼容性。&lt;audio&gt;標籤也可以使用controls屬性來顯示播放控制器，讓使用者可以播放、暫停、調整音量等操作。</p>
+            <audio controls = "controls">
+                <source src = "music.mp3" type = "audio/mpeg">
+                <source src = "music.ogg" type = "audio/ogg">
+            </audio>
+
+            <p>&lt;video&gt;標籤用於插入影片，用法同&lt;audio&gt;標籤。</p>
+            <video controls = "controls">
+                <source src = "video.mp4" type = "video/mp4">
+                <source src = "video.ogg" type = "video/ogg">
+            </video>
+
+        </main>
+    
+    
+        <footer id = "footer">
+            <p>&lt;footer&gt;是頁腳的標籤，通常用來放置版權聲明、聯絡資訊等內容。</p>
+            &copy; 2026 Javascript 網頁程式設計
+            <a href = "mailto: chaohong.mg12@nycu.edu.tw">聯絡我: chaohong.mg12@nycu.edu.tw</a>
+            <a href = "#header">跳轉到頁首</a>
+        </footer>
+    </body>
+</html>
