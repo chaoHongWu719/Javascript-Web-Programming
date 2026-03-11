@@ -57,6 +57,7 @@
                 &amp;amp;          &amp;          和號
                 &amp;copy;         &copy;          版權符號
                 &amp;quot;          &quot;          雙引號
+                &amp;nbsp;          &nbsp;          不斷行空格
             </pre>
 
             <p>&lt;span&gt;與&lt;div&gt;標籤可以用來對文字的一部分進行格式化，通常是為了設定文字樣式，差異在於&lt;div&gt;是區塊 (block) 元素，用於包一整塊段落；而&lt;span&gt;是行內 (inline) 元素，用來包一小段文字。</p>
@@ -90,9 +91,138 @@
                 <source src = "video.mp4" type = "video/mp4">
                 <source src = "video.ogg" type = "video/ogg">
             </video>
-
-        </main>
     
+    
+            <p>以下是一個影像地圖的範例，可以點選指定區域後跳轉到對應的頁面，使用&lt;map&gt;標籤，並指定&lt;area&gt;指定區域範圍；至於座標表，則需要根據實際影像的長寬尺寸來設定，可使用線上工具
+                <a href = "https://www.image-map.net/" target = "_blank">Image-Map.net</a> 來輔助取得座標。
+                若想要點選指定位置後的圖說出現在網頁上的某塊位置，可使用 &lt;iframe&gt; 標籤 (inline frame)，並將連結的 target 屬性改為 iframe 的 id。
+            </p>
+
+            <div style = "position:relative;">  <!--為了讓 iframe 出現在圖片附近，而不是網頁最上方-->
+                <map id = "nctu" name = "nctu">  <!--id, name 建議都寫，以維持相容性-->
+                    <!--rectangle: coords = (left up) x1,y1, (right down)x2,y2 -->
+                    <area shape = "rect" coords = "352,192,388,224" href = "map1.html" alt = "體育館" title = "體育館" target = "note">
+
+                    <!--circle: coords = x, y, radius-->
+                    <area shape = "circle" coords = "522,354,32" href = "map2.html" alt = "圖書館" title = "圖書館" target = "note">
+
+                    <!--polygon: coords = x1,y1, x2,y2, x3,y3, ... -->
+                    <area shape = "poly" coords = "456,248,456,280,500,280,500,260,480,260,480,248"
+                        href = "map3.html" alt = "資訊中心" title = "資訊中心" target = "note">	
+                </map>
+
+                <iframe id = "note" name = "note" width = "250" height = "400" srcdoc = "初始化文字" 
+                    style = "position:absolute; top:100px; right:0;" seamless>
+                        您的瀏覽器不支援浮動頁框(inline frame)
+                </iframe>
+
+                <!-- the source figure of the above map -->
+                <figure>
+                    <img src = "mapNCTU.gif" usemap = "#nctu" style = "width:800px;" alt = "交大地圖">
+                    <figcaption>交通大學</figcaption>
+                </figure>
+            </div>
+
+            <p>接著介紹如何用html繪製表格，需要使用&lt;table&gt;、&lt;tr&gt;、&lt;td&gt;等標籤，其中&lt;tr&gt;標籤用於建立表格的列 (row)，&lt;td&gt;標籤用於建立表格的欄 (column)。
+                &lt;caption&gt;則可以用來為表格添加標題，&lt;summary&gt;則顯示給瀏覽器看的資訊 (使網頁更容易被搜尋到)。
+                &lt;thead&gt;、&lt;tbody&gt;、&lt;tfoot&gt;則分別用於定義表格的表頭、表身和表尾，這樣可以做到 incremental rendering (漸進式產生body內文，用於資料量大，此時&lt;tfoot&gt;需要寫在&lt;tbody&gt;前方)，且方便滾動 (固定顯示 head 和 foot)。
+                更進階的標籤如&lt;rowspan&gt;、&lt;colspan&gt;則是用來合併儲存格。
+            </p>
+            <table border = "1" summary = "寫給瀏覽器看的">
+                <caption>表格標題 (表格上方)</caption>
+                <thead>
+                    <tr>
+                        <th>標題列, col-1</th>
+                        <th>標題列, col-2</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td rowspan = "2">row-3&4, col-1</td>
+                        <td>row-3, col-2</td>
+                    </tr>
+                    <tr>
+                        <td>row-4, col-2</td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>row-1, col-1</td>
+                        <td>row-1, col-2</td>
+                    </tr>
+                    <tr>
+                        <td>row-2, col-1</td>
+                        <td>row-2, col-2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+        <p>最後介紹表單 (form)。請注意:一個網頁可以不只一個 form, 但一次只會有一個 form 生效</p>
+        <ul>
+            <li>&lt;form&gt; 標籤用於建立表單，可以包含多個屬性</li>
+            <ul>
+                <li>&lt;name&gt;, &lt;id&gt; 用於指定表單的名稱</li>
+                <li>&lt;action&gt; 用於指定表單提交的 URL</li>
+                <li>&lt;method&gt; 用於指定表單提交的 HTTP 方法，html 可用 
+                    <ul>
+                        <li>GET: 把表單所有資訊都放在 url 中，再傳送給伺服器 e.g. submit.php?account=user1&password=user123...</li>
+                        <li>POST: 先傳送特定表頭給伺服器，再傳送真正的表單資料。適合有密碼 (比較安全) 或大表單 (網址有長度限制)</li>
+                    </ul>
+                </li>
+                <li>&lt;enctype&gt; 用於指定表單資料的編碼方式，尤其在上傳多個檔案時需要設定</li>
+            </ul>
+            <li>&lt;input&gt; 用於建立表單元素</li>
+            <ul>
+                <li>&lt;label&gt; 用於為表單元素提供文字標籤，可用 for = "elementID" 屬性來指定元素；也可以在元素中添加屬性 label = "labelID"</li>
+                <li>&lt;type&gt; 用於指定元素的類型 (text, password, select, checkbox, radio, file, reset, submit...)</li>
+                <li>&lt;value&gt; 用於指定元素的初始值</li>
+            </ul>
+            <li>一些其他的屬性</li>
+                <ul>
+                    <li>placeholder: 用於指定元素的提示文字 (當元素為空時顯示)</li>
+                    <li>checked: 用於指定 radio 或 checkbox 元素的預設選項</li>
+                    <li>required: 用於指定元素為必填項</li>
+                </ul>
+            </li>
+        </ul>
+
+        <form id = "formUser" name = "formUser" action = "submit.php" method = "POST" enctype = "multipart/form-data">
+            <label for = "account">帳號:</label>
+            <input type = "text" id = "account" name = "account" placeholder = "請輸入帳號" required><br>
+
+            <label for = "password">密碼:</label>
+            <input type = "password" id = "password" name = "password" placeholder = "請輸入密碼" required><br>
+
+            <label for = "department">系所:</label>
+            <select id = "department" name = "department">
+                <option value = "IM">資管系</option>
+                <option value = "IEM">工管系</option>
+                <option value = "TLM">運管系</option>
+            </select><br>  <!--換行-->
+
+            <label for = "gender">性別:</label>  <!--radio 用於互斥，id 不同但 name (後端變數名稱) 需要相同!-->
+            <input type = "radio" id = "male" name = "gender" value = "M" checked>男
+            <input type = "radio" id = "female" name = "gender" value = "F">女
+            </label><br>
+
+            <label for = "age">年齡:</label>
+            <input type = "number" id = "age" name = "age" min = "18" max = "23" required><br>
+            
+            <label for = "birthday">生日:</label>
+            <input type = "date" id = "birthday" name = "birthday" required><br>
+
+            <label for = "file">上傳履歷:</label>
+            <input type = "file" id = "file" name = "file[]" multiple><br>
+            <!--允許上傳多個檔案，可以將 name 後面加上 []，屆時後端會接收到一個陣列-->
+
+            <label for = "understand">我已經確實了解相關規定</label>
+            <input type = "checkbox" id = "understand" name = "understand" value = "是" required><br>
+
+            <input type = "reset" value = "重置">
+            <input type = "submit" value = "提交">
+        </form>
+        
     
         <footer id = "footer">
             <p>&lt;footer&gt;是頁腳的標籤，通常用來放置版權聲明、聯絡資訊等內容。</p>
