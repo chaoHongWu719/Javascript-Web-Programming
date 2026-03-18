@@ -1,0 +1,46 @@
+/* selector {
+    property1: value1;
+    property2: value2;
+} */
+
+@charset "UTF-8";
+
+body {  /*type selector*/
+    background-color: rgba(60%, 240, 250, 0.1);  /*r, g, b, a: 透明度*/
+    background-image: url("dragon.png");
+    background-repeat: no-repeat;
+    background-size: 130px 150px;
+    background-position: right top;
+    background-attachment: fixed;
+
+}
+
+h1, h2, h3, h4, h5, h6 {  /*group selector*/
+    color: blue;
+}
+
+h1 {
+    font-family: "Noto Sans TC";  /*cover the font-family from universal selector*/
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2em;
+}
+
+a {
+    color: blue;
+}
+
+p {
+    text-indent: 2em;
+}
+
+#example { /*self-defined id selector*/
+    font-style: italic;
+    font-weight: bold;
+    color: red;
+}
+
+* {  /*universal selector*/
+    font-family: "Times New Roman", "標楷體";
+}  /*selector applied to all elements, by order of precedence*/
