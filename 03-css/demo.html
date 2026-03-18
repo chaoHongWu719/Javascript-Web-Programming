@@ -1,0 +1,88 @@
+03-<!DOCTYPE html>
+<html lang = "zh-TW">
+<head>
+    <meta charset = "UTF-8">
+    <title>CSS practice</title>
+    <link rel = "stylesheet" type = "text/css" href = "demo.css">
+    <link href = "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel = "stylesheet">
+</head>
+
+<body>
+    <h1>基本介紹</h1>
+    <p style = "text-indent: -3600px; height: 0.2em; background-color: green;">no show</p>
+    <p>
+        CSS 是 Cascading Style Sheets 的縮寫，用於控制網頁的樣式。有以下三種寫法:
+        <ol>
+            <li>inline: 直接寫在 html 標籤內 
+                e.g. <span id = "example"> &lt;p style = “font-size: 24pt;”&gt;</span></li>
+            <li>internal: 寫在 html 檔案中 &lt;head&gt; 內，使用 &lt;style&gt; 標籤</li>
+            <li>external: 寫在另一個獨立的檔案中，最為推薦 
+                e.g. <span id = "example"> &lt;link rel = "stylesheet" type = "text/css" href = "styles.css"&gt;</span></li>
+        </ol>
+    </p>
+
+    <p>
+        CSS 的語法為: <span id = "example">selector { property1: value1; property2: value2; ...}</span>，
+        而註解則是<span id = "example"> /* comment */</span>
+        selector 是用來選擇要套用的 html 標籤，主要可分為三類，越下層的 selector 會覆蓋上層的 selector:
+        <ol>
+            <li>type selector: 選擇特定的 html 標籤 e.g. <span id = "example"> body</span>
+            <li>group selector: 選擇多個 html 標籤 e.g. <span id = "example"> h1, h2, h3</span></li>
+            <li>universal selector: 選擇所有 html 標籤 e.g. <span id = "example"> *</span> (萬用字元)
+            <li>id selector: 選擇特定的 id e.g. <span id = "example"> #id</span></li>
+            <li>class selector: 選擇特定的 class e.g. <span id = "example"> tagName.className</span> or <span id = "example"> *.className</span>
+                <br>注意: 一個 tag 可以有多個 class (e.g. <span id = "example">&lt;div class = "class1 class2"&gt;</span>)，而 CSS 中的 class selector 可以寫為 <span id = "example">tag.class1.class2</span> (同時符合 class1 和 class2) 或 <span id = "example">tag.class1, tag.class2</span> (符合 class1 或 class2)
+                <br>比較: id 在一個 html 中只能出現一次 (較少寫在 external CSS 中，可以直接用 inline CSS), class則可以不同 tag 重複使用
+                </li>
+            </ol>
+    </p>
+
+    <h1>字型設定</h1>
+    <p style = "text-indent: -3600px; height: 0.2em; background-color: green;">no show</p>
+    <p>
+        font 有以下常見屬性，若有使用中文字體，在 CSS 開頭須加上 <span id = "example"> @charset "UTF-8";</span> 以確保中文能正常顯示。
+        <ol>
+            <li>font-family: 依照指定順序設定字型，通常英文字型寫前面，中文寫後面 e.g. <span id = "example">font-family: "Times New Roman", "標楷體";</span> <br>
+                若想要使用 google 的 Noto 系列字型，可以在 &lt;head&gt; 中加入以下程式碼來匯入字型:<span id = "example">&lt;link href = <a href = "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" target = "_blank">字型網址</a> rel = "stylesheet"&gt;</span></li>
+            <li>font-size: 字體大小 e.g. <span id = "example">font-size: 24pt;</span>，其中單位有 px (pixel), em (大寫M大小), ex (小寫x大小, 約為 em 一半), % <br>
+                也可使用 <span id = "example">font-size: xx-large;</span>，有 xx-small, x-small, small, medium, large, x-large, xx-large <br>
+                若有巢狀tag, 則可將 child tag 設定為 larger/smaller</li>
+            <li>font-weight: 字體粗細, 有 normal, bold, bolder, lighter, 100~900 e.g. <span id = "example"> font-weight: bold;</span></li>
+            <li>font-style: 字體樣式 e.g. <span id = "example"> font-style: italic;</span></li>
+            <li>line-height: 航高，單位與 font-size 類似 e.g. <span id = "example">line-height: 1.2em;</span></li>
+            <li>text-align: 文字水平對齊方式 e.g. <span id = "example">text-align: center;</span></li>
+            <li>text-indent: 首行縮排 (+:縮排; -: 凸排) e.g. <span id = "example">text-indent: 2em;</span><br>
+                小技巧 (用於畫線但不顯示文字): <span id = "example">&lt;p style = "text-indent: -3600px; height: 0.2em; background-color: green;"&gt;no show&lt;/p&gt;</span></li>
+            <li>text-decoration: 文字裝飾 e.g. <span id = "example" style = "text-decoration: underline;">text-decoration: underline;</span> (底線) 或 <span id = "example" style = "text-decoration: line-through;">text-decoration: line-through;</span> (刪除線)</li>
+            <li>text-shadow: 文字陰影 (horizontal offset, vertical offset, blur radius, color)
+                e.g. <span id = "example" style = "text-shadow: 2px 2px 4px gray;">text-shadow: 2px 2px 4px gray;</span></li>
+        </ol>
+    </p>
+
+    <h1>顏色與背景</h1>
+    <p style = "text-indent: -3600px; height: 0.2em; background-color: green;">no show</p>
+    <p>
+        顏色有以下幾種寫法:
+        <ul>
+            <li>RGB (16進位, 0-255) e.g. <span id = "example" style = "color: #ff0000;">color: #ff0000;</span> (紅色)</li>
+            <li>rgb(R, G, B) e.g. <span id = "example" style = "color: rgb(0, 255, 0);">color: rgb(0, 255, 0);</span> (綠色) 或 <span id = "example" style = "color: rgba(0%, 0%, 100%);">color: rgba(0%, 0%, 100%);</span> (藍色)</li>
+            <li>rgba(R, G, B, 透明度) e.g. <span id = "example" style = "color: rgba(255, 0, 0, 0.5);">color: rgba(255, 0, 0, 0.5);</span> (半透明紅色)</li>
+            <li>hsl(色相, 飽和度, 亮度) e.g. <span id = "example" style = "color: hsl(0, 100%, 50%);">color: hsl(0, 100%, 50%);</span> (紅色)</li>
+            <li>hsla(色相, 飽和度, 亮度, 透明度) e.g. <span id = "example" style = "color: hsla(0, 100%, 50%, 0.5);">color: hsla(0, 100%, 50%, 0.5);</span> (半透明紅色) <br>
+             其中色相 (hue) 的範圍為 0-360 度, 0/360 為紅色, 120 為綠色, 240 為藍色</li>
+        </ul>
+    </p>
+
+    <p>
+        背景圖片添加: 使用 <span id = "example">background-image: url("圖片路徑")</span>，可搭配 
+        <ul>
+            <li><span id = "example">background-repeat</span>: repeat-x or repeat-y or no-repeat;</li>
+            <li><span id = "example">background-position</span>: right bottom ..</li>
+            <li><span id = "example">background-size</span>: 200px 100px; </li>
+            <li><span id = "example">background-attachment</span>: fixed; (背景固定，視窗滑動仍在固定位置)</li>
+            <li>background-image 可用漸層色 e.g. <span id = "example">background-image: linear-gradient(to right, red, blue);</span></li>
+        </ul>
+    </p>
+
+</body>
+</html>
